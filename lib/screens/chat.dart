@@ -25,9 +25,7 @@ class _ChatState extends State<Chat> {
     bool available = await speech.initialize();
     if (available) {
       await speech.listen(onResult: (SpeechRecognitionResult result) {
-        if (_textController.text != result.recognizedWords) {
-          _textController.text = result.recognizedWords;
-        }
+        _textController.text = result.recognizedWords;
       });
     } else {
       print("The user has denied the use of speech recognition.");
@@ -52,12 +50,13 @@ class _ChatState extends State<Chat> {
 
     setState(() {
       _messages.insert(0, message);
-       speech.stop();
+      speech.stop();
       _isRecording = false;
     });
 
-    http.Response response = await http
-        .post(Uri.parse('http://127.0.0.1:5000/bot'), body: {"query": text});
+    http.Response response = await http.post(
+        Uri.parse('https://dokta.herokuapp.com/bot'),
+        body: {"query": text});
     String fulfillmentText = json.decode(response.body)["data"];
     if (fulfillmentText.isNotEmpty) {
       ChatMessage botMessage = ChatMessage(
