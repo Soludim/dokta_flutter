@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:http/http.dart' as http;
@@ -105,11 +106,16 @@ class _ChatState extends State<Chat> {
                       onPressed: () => handleSubmitted(_textController.text),
                     ),
                   ),
-                  IconButton(
-                    iconSize: 30.0,
-                    icon: Icon(_isRecording ? Icons.mic_off : Icons.mic),
-                    onPressed: _isRecording ? stopRecording : record,
-                  ),
+                  AvatarGlow(
+                    endRadius: 20,
+                    animate: _isRecording ? true : false,
+                    glowColor: Theme.of(context).primaryColor,
+                    child: IconButton(
+                      iconSize: 30.0,
+                      icon: const Icon(Icons.mic),
+                      onPressed: _isRecording ? stopRecording : record,
+                    ),
+                  )
                 ],
               ),
             ),
