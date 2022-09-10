@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "general-problems-cdbh",
+  "private_key_id": "abe14dfb5db8d59aeebe4908a073e34ac7fdf740",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQC9XFf5OZ6Poli2\nYFTyh/DdMWf8XTq6H9BTVOPhq1tEBFcACbMzWfqQtF6RjQg0kiIF7QwDVmo0aiq/\nufCewKEu/Az6HZbTAwtnwVLjwXLIt3E2vkkYtcq3PLykkf3CMShnaDYq3FvPxRTV\np9sK+7R/C7SzzEFOX48zePRJXB/cqzYEF3JVV9l4JBYxHLhFUX44rWQN3d3zLx3T\nRSn7jaR93TaHijQigQbFDugyvj5YPNtQIjK60IlIIaJEPt+mTTayYWufU87Nou5d\nJuiY/TbHN1/sZbOaerO5Bh8fdZ52oaE2dlewF+uZ3X5CkapaP6DrIY8uCeJ8Yp+f\nuJncMkM3AgMBAAECgf87DREM0hXLClWf32qeN3EQNC1kBa7KsXZwhjM1AhBJUGZ7\nxzVFo57/1pT8eX6VkPy13GENVBAf8vu3I8UQZ1cxz72Rl1NGz9bpWYr/0NPQGWS0\n2EzzPRMlEUvCsRmb9WMkMYYILQUfRdZkH8mvIySmedVgPHzLyVZe4YP3XJiTDPKi\nPSw/r3E1MVvfxhKiNXKuy/t3QR8VRxgAbfhNtaC4tkJHeeNAp6zjqjrwsMHNaX+u\ndMXNMJy35aCdzqzfJgwbI/kLe3OzRsbaWcPgqle5d1LqNYhax0RUmKpiW5WHt/aD\n1R5V7Ib2Cazto+xdf4I+3tRH4btpQARDnbz2IGUCgYEA3iUSO1WSm177o2Z2nvkO\nBr9Cl8lTRwFrJ4bZedxj60hs34Hut/HgxN6uMXJofYjtFyhus/sFgN+FdysGZmXc\nwMVDMEMJ64smlcSdNiLR/7iBW1gxvJ4xP9ayf9maxfbCdvHPxhyRqxHz6cAwf8Gm\n+fQSjzHcyhscsQoSr9x2f8UCgYEA2jg1ZpquLvEtC23DqeVIA9jVKGtU3XpfdBEF\nsx2EzKuH6xePMSslCAmg/6IgNeBn62dx575PUWM8dmmYzrlBJ51q8HpcmoYplJLI\n6upd0Mv74BVu7BedgW5BdreeBTfR03kl35nNPSiSj87ckKhY7DI8MCKDomWbI/vW\nAczcSssCgYB68qmUjVgHBhrf5OXiNpW8xj5lI9gjhHV5+viCqafjoMIhMhidVhHA\n5D4kv911HUObfZVHp7b0DMIhon54TghP6N226GOlKe7BFYCtZbg0gDmYBMgCTMuV\nOY6xlA5FYr1ed5c3XriApf8JcIVnMBbqYFulRUOd2EOY+Ko/CxXKwQKBgEl6EakJ\nvkq6FHO7st1bAYOiGCvy7/FfShK3xJaKAvQzcaGcHi/tGhv5ugc5XOUnOXaPL1Bb\nyTNbWbl5VuWMhT7Eh4SPfuzc7dVEE3jeD1bFyHqsXNwMG5HAQTSrIP8ay4EMUs9W\nZ0AHkEnx2lyvAroNNCz1AiPFWJamLmoOw8I/AoGAXQ0l5VnOaC76KWP0o2qXXyCq\nerynFLlNw2fx+QzTExEP5sDgyLOoHej14nFa1sIHxTcJWEtkbr4gFfw5bCtLH4cI\nxa5sFFOJ3nToKwL9D1xL/U2rUSLHvzQvlyNmUgrGTvh8utcKlu5XxPN0+no0ZRRZ\ngMprozTxCgBA4LISMAI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "common-ailments@general-problems-cdbh.iam.gserviceaccount.com",
+  "client_id": "108224016367757471968",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/common-ailments%40general-problems-cdbh.iam.gserviceaccount.com"
+}

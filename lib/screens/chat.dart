@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
@@ -18,8 +18,15 @@ class _ChatState extends State<Chat> {
   final List<ChatMessage> _messages = <ChatMessage>[];
   final TextEditingController _textController = TextEditingController();
   SpeechToText speech = SpeechToText();
+  late DialogFlowtter dialogFlowtter;
 
   bool _isRecording = false;
+
+  @override
+  void initState() {
+    DialogFlowtter.fromFile().then((instance) =>dialogFlowtter = instance);
+    super.initState();
+  }
 
   void record() async {
     setState(() => _isRecording = true);
@@ -55,10 +62,15 @@ class _ChatState extends State<Chat> {
       _isRecording = false;
     });
 
-    http.Response response = await http.post(
-        Uri.parse('https://dokta.herokuapp.com/bot'),
-        body: {"query": text});
-    String fulfillmentText = json.decode(response.body)["data"];
+    // http.Response response = await http.post(
+    //     Uri.parse('https://dokta.herokuapp.com/bot'),
+    //     body: {"query": text});
+    DetectIntentResponse response = await dialogFlowtter.detectIntent(
+          queryInput: QueryInput(text: TextInput(text: text)));
+
+    if (response.message == null) return;
+    print(response.message!.text!.text!.first);
+    String? fulfillmentText = response.message!.text!.text!.first;//json.decode(response.body)["data"];
     if (fulfillmentText.isNotEmpty) {
       ChatMessage botMessage = ChatMessage(
         text: fulfillmentText,
@@ -93,6 +105,8 @@ class _ChatState extends State<Chat> {
                 children: <Widget>[
                   Flexible(
                     child: TextField(
+                      minLines: 1,
+                      maxLines: 5,
                       controller: _textController,
                       onSubmitted: handleSubmitted,
                       decoration: const InputDecoration.collapsed(
