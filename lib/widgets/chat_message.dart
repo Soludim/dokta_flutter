@@ -1,12 +1,20 @@
+import 'dart:io';
+
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 
 class ChatMessage extends StatelessWidget {
-  ChatMessage({required this.text, required this.name, required this.type});
+  ChatMessage(
+      {Key? key,
+      required this.content,
+      required this.name,
+      required this.type})
+      : super(key: key);
 
-  final String text;
+  final Map<String, dynamic> content;
   final String name;
   final bool type;
+
 
   Widget otherMessage(context) {
     return Bubble(
@@ -15,7 +23,7 @@ class ChatMessage extends StatelessWidget {
       nipWidth: 8,
       nipHeight: 24,
       nip: BubbleNip.leftTop,
-      child: Text(text),
+      child: Text(content["value"]),
     );
   }
 
@@ -27,7 +35,14 @@ class ChatMessage extends StatelessWidget {
       nipHeight: 24,
       nip: BubbleNip.rightTop,
       color: const Color.fromRGBO(225, 255, 199, 1.0),
-      child: Text(text, textAlign: TextAlign.right),
+      child: content["text"]
+          ? Text(content["value"], textAlign: TextAlign.right)
+          : Image.file(
+                content["value"],
+                fit: BoxFit.contain,
+                height: 200,
+                width: 200,
+              ),
     );
   }
 
