@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:http_parser/http_parser.dart';
@@ -28,6 +29,20 @@ class _ChatState extends State<Chat> {
   @override
   void initState() {
     DialogFlowtter.fromFile().then((instance) => dialogFlowtter = instance);
+
+    ChatMessage botMessage = ChatMessage(
+      content: const {
+        "text": true,
+        "value":
+            "Dokta welcomes you 😊. \nWe are here to assist you in all medical issues. \nTo detect for skin scanner, press the camera icon to take a picture or upload an image"
+      },
+      name: "Bot",
+      type: false,
+    );
+
+    setState(() {
+      _messages.insert(0, botMessage);
+    });
     super.initState();
   }
 
@@ -65,17 +80,10 @@ class _ChatState extends State<Chat> {
     var request = http.MultipartRequest('POST', skinCancerApi);
     request.files.add(await http.MultipartFile.fromPath('file', image.path,
         contentType: MediaType('image', 'jpg')));
-     http.StreamedResponse response = await request.send();
-     final responseStr = await response.stream.bytesToString();
-     ChatMessage botMessage = ChatMessage(
-        content: {"text": true, "value": responseStr},
-        name: "Bot",
-        type: false,
-      );
+    http.StreamedResponse response = await request.send();
+    final responseStr = await response.stream.bytesToString();
 
-      setState(() {
-        _messages.insert(0, botMessage);
-      });
+    getBotResponse(responseStr);
   }
 
   void handleSubmitted(text) async {
@@ -91,19 +99,20 @@ class _ChatState extends State<Chat> {
     setState(() {
       _messages.insert(0, message);
       speech.stop();
+      textValue = "";
       _isRecording = false;
     });
 
-    // http.Response response = await http.post(
-    //     Uri.parse('https://dokta.herokuapp.com/bot'),
-    //     body: {"query": text});
+    getBotResponse(text);
+  }
+
+  void getBotResponse(text) async {
     DetectIntentResponse response = await dialogFlowtter.detectIntent(
         queryInput: QueryInput(text: TextInput(text: text)));
 
     if (response.message == null) return;
 
-    String? fulfillmentText = response
-        .message!.text!.text!.first; //json.decode(response.body)["data"];
+    String? fulfillmentText = response.message!.text!.text!.first;
     if (fulfillmentText.isNotEmpty) {
       ChatMessage botMessage = ChatMessage(
         content: {"text": true, "value": fulfillmentText},
