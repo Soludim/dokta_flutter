@@ -21,10 +21,12 @@ class _ImageInputState extends State<ImageInput> {
   void _getImage(BuildContext context, ImageSource source) {
     ImagePicker.pickImage(source: source, maxWidth: 400.0).then((File image) {
       retrieveLostData();
+      if (image != null) {
       setState(() {
         _imageFile = image;
       });
       widget.setImage(image);
+      }
       Navigator.pop(context);
     }).catchError((onError) {
       print(onError);
@@ -81,18 +83,6 @@ class _ImageInputState extends State<ImageInput> {
 
   @override
   Widget build(BuildContext context) {
-    // Widget previewImage = const Text('Please select an image.');
-    // previewImage = Card(
-    //   elevation: 10.0,
-    //   child: Image.file(
-    //     _imageFile,
-    //     fit: BoxFit.cover,
-    //     height: 300.0,
-    //     width: MediaQuery.of(context).size.width,
-    //     alignment: Alignment.topCenter,
-    //   ),
-    // );
-
     return IconButton(
         onPressed: () {
           _openImagePicker(context);

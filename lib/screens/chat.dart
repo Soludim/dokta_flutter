@@ -107,8 +107,20 @@ class _ChatState extends State<Chat> {
   }
 
   void getBotResponse(text) async {
+    ChatMessage botWaiting = ChatMessage(
+      content: const {"text": false, "value": ""},
+      name: "Bot",
+      type: false,
+    );
+    setState(() {
+        _messages.insert(0, botWaiting);
+    });
     DetectIntentResponse response = await dialogFlowtter.detectIntent(
         queryInput: QueryInput(text: TextInput(text: text)));
+
+     setState(() {
+        _messages.removeAt(0);
+    }); //remove loading message
 
     if (response.message == null) return;
 

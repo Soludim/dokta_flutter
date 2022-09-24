@@ -2,29 +2,32 @@ import 'dart:io';
 
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ChatMessage extends StatelessWidget {
   ChatMessage(
-      {Key? key,
-      required this.content,
-      required this.name,
-      required this.type})
+      {Key? key, required this.content, required this.name, required this.type})
       : super(key: key);
 
   final Map<String, dynamic> content;
   final String name;
   final bool type;
 
-
   Widget otherMessage(context) {
-    return Bubble(
-      margin: const BubbleEdges.only(top: 10),
-      alignment: Alignment.topLeft,
-      nipWidth: 8,
-      nipHeight: 24,
-      nip: BubbleNip.leftTop,
-      child: Text(content["value"]),
+    SpinKitThreeBounce spinkit = SpinKitThreeBounce(
+      color: Theme.of(context).primaryColor,
+      size: 16.0,
     );
+
+    return Bubble(
+        margin: const BubbleEdges.only(top: 10),
+        alignment: Alignment.topLeft,
+        nipWidth: 8,
+        nipHeight: 24,
+        nip: BubbleNip.leftTop,
+        child: content["text"]
+            ? Text(content["value"])
+            : SizedBox(width: 100, child: spinkit));
   }
 
   Widget myMessage(context) {
@@ -38,11 +41,11 @@ class ChatMessage extends StatelessWidget {
       child: content["text"]
           ? Text(content["value"], textAlign: TextAlign.right)
           : Image.file(
-                content["value"],
-                fit: BoxFit.contain,
-                height: 200,
-                width: 200,
-              ),
+              content["value"],
+              fit: BoxFit.contain,
+              height: 200,
+              width: 200,
+            ),
     );
   }
 
