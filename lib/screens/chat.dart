@@ -74,6 +74,8 @@ class _ChatState extends State<Chat> {
       _messages.insert(0, message);
     });
 
+    botWaitingLoader();
+
     // skin cancer api
     Uri skinCancerApi = Uri.parse('https://dokta.herokuapp.com/predict');
 
@@ -83,6 +85,7 @@ class _ChatState extends State<Chat> {
     http.StreamedResponse response = await request.send();
     final responseStr = await response.stream.bytesToString();
 
+    
     getBotResponse(responseStr);
   }
 
@@ -103,10 +106,12 @@ class _ChatState extends State<Chat> {
       _isRecording = false;
     });
 
+    botWaitingLoader();
     getBotResponse(text);
   }
 
-  void getBotResponse(text) async {
+
+  void botWaitingLoader() {
     ChatMessage botWaiting = ChatMessage(
       content: const {"text": false, "value": ""},
       name: "Bot",
@@ -115,6 +120,9 @@ class _ChatState extends State<Chat> {
     setState(() {
         _messages.insert(0, botWaiting);
     });
+  }
+  void getBotResponse(text) async {
+   
     DetectIntentResponse response = await dialogFlowtter.detectIntent(
         queryInput: QueryInput(text: TextInput(text: text)));
 
